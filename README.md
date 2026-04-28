@@ -16,3 +16,4 @@ git push -u origin feat/algoritmo-andres-ejemplo
 1. No branchear desde Main (esta rama es intocable)
 2. No hacer cambios desde develop (generar una feature branch) 
 3. No mergear pull requests (Solo el admin aprueba Merge)
+4. Procura no editar archivos de office (Word, Excel, PPT, etc...) ya que git no podrá combinar los cambios de todos los usuarios, en el mejor de los casos, avisa a todo el equipo antes de continuar.
