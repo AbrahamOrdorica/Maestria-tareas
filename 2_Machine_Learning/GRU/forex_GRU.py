@@ -21,6 +21,20 @@ BASE_DIR = Path(__file__).resolve().parent
 DEFAULT_FOREX = BASE_DIR / "Forex" / "daily_forex_rates.csv"
 DEFAULT_OUTPUT = BASE_DIR / "outputs" / "forex"
 
+GRU_CONFIG_NAME = "base"
+RUN_ALL_CONFIGS = False
+TRAIN_RATIO = 0.8
+PRINT_ROWS = 20
+
+GRU_CONFIGS = {
+    "base": {"gru1": 64, "gru2": 32, "dropout": 0.2, "dense": 32, "lr": 0.001},
+    "small_gru": {"gru1": 32, "gru2": 16, "dropout": 0.2, "dense": 32, "lr": 0.001},
+    "large_gru": {"gru1": 128, "gru2": 64, "dropout": 0.2, "dense": 64, "lr": 0.001},
+    "dropout_low": {"gru1": 64, "gru2": 32, "dropout": 0.1, "dense": 32, "lr": 0.001},
+    "dropout_high": {"gru1": 64, "gru2": 32, "dropout": 0.4, "dense": 32, "lr": 0.001},
+    "balanced": {"gru1": 96, "gru2": 48, "dropout": 0.3, "dense": 48, "lr": 0.001},
+}
+
 
 def cargar_forex_csv(ruta_csv=DEFAULT_FOREX, base_currency="EUR", currency="MXN"):
     ruta_csv = Path(ruta_csv)
@@ -74,22 +88,23 @@ def crear_secuencias(df, target_col, window_size=30):
     return X, y, fechas_y, scaler
 
 
-def dividir_temporalmente(X, y, fechas, train_ratio=0.8):
+def dividir_temporalmente(X, y, fechas, train_ratio=TRAIN_RATIO):
     train_size = int(len(X) * train_ratio)
     return X[:train_size], X[train_size:], y[:train_size], y[train_size:], fechas[:train_size], fechas[train_size:]
 
 
-def construir_modelo(input_shape):
+def construir_modelo(input_shape, config_name=GRU_CONFIG_NAME):
+    config = GRU_CONFIGS[config_name]
     model = Sequential([
         Input(shape=input_shape),
-        GRU(64, return_sequences=True),
-        Dropout(0.2),
-        GRU(32),
-        Dropout(0.2),
-        Dense(32, activation="relu"),
+        GRU(config["gru1"], return_sequences=True),
+        Dropout(config["dropout"]),
+        GRU(config["gru2"]),
+        Dropout(config["dropout"]),
+        Dense(config["dense"], activation="relu"),
         Dense(1, activation="linear"),
     ])
-    model.compile(optimizer=Adam(learning_rate=0.001), loss="mse", metrics=["mae"])
+    model.compile(optimizer=Adam(learning_rate=config["lr"]), loss="mse", metrics=["mae"])
     return model
 
 
@@ -142,17 +157,38 @@ def graficar_predicciones(fechas_test, y_real, y_pred, output_dir, target_col):
     print(f"Grafica guardada en: {path}")
 
 
-def ejecutar_forex(ruta_csv, base_currency, currency, window_size, epochs, batch_size, output_dir):
+def guardar_errores(fechas_test, y_real, y_pred, output_dir, print_rows=PRINT_ROWS):
+    resultados = pd.DataFrame({
+        "fecha": pd.to_datetime(fechas_test),
+        "valor_real": y_real.ravel(),
+        "valor_predicho": y_pred.ravel(),
+    })
+    resultados["error"] = resultados["valor_real"] - resultados["valor_predicho"]
+    resultados["error_absoluto"] = resultados["error"].abs()
+
+    path = output_dir / "forex_real_predicho_error.csv"
+    resultados.to_csv(path, index=False)
+    print(f"Tabla real/predicho/error guardada en: {path}")
+
+    if print_rows > 0:
+        print("\nMUESTRA REAL VS PREDICHO")
+        print(resultados.head(print_rows).to_string(index=False))
+
+    return resultados
+
+
+def ejecutar_forex(ruta_csv, base_currency, currency, window_size, epochs, batch_size, output_dir, config_name=GRU_CONFIG_NAME, train_ratio=TRAIN_RATIO, print_rows=PRINT_ROWS):
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
+    print(f"Configuracion: {config_name} -> {GRU_CONFIGS[config_name]}")
     df, target_col = cargar_forex_csv(ruta_csv, base_currency, currency)
     graficar_serie_completa(df, target_col, output_dir)
 
     X, y, fechas, scaler = crear_secuencias(df, target_col, window_size)
-    X_train, X_test, y_train, y_test, _, fechas_test = dividir_temporalmente(X, y, fechas)
+    X_train, X_test, y_train, y_test, _, fechas_test = dividir_temporalmente(X, y, fechas, train_ratio=train_ratio)
 
-    model = construir_modelo(input_shape=(X_train.shape[1], X_train.shape[2]))
+    model = construir_modelo(input_shape=(X_train.shape[1], X_train.shape[2]), config_name=config_name)
     model.summary()
 
     history = model.fit(
@@ -172,17 +208,19 @@ def ejecutar_forex(ruta_csv, base_currency, currency, window_size, epochs, batch
     rmse = np.sqrt(mean_squared_error(y_test_real, y_pred_real))
 
     print("\nRESULTADOS FOREX")
+    print(f"Configuracion: {config_name}")
     print(f"Paridad objetivo: {target_col}")
     print(f"MAE:  {mae:.4f}")
     print(f"RMSE: {rmse:.4f}")
 
     graficar_historial(history, output_dir)
     graficar_predicciones(fechas_test, y_test_real, y_pred_real, output_dir, target_col)
+    guardar_errores(fechas_test, y_test_real, y_pred_real, output_dir, print_rows)
 
     model_path = output_dir / "modelo_gru_forex.keras"
     model.save(model_path)
     print(f"Modelo guardado en: {model_path}")
-    return model
+    return {"config": config_name, "mae": mae, "rmse": rmse}
 
 
 def main():
@@ -193,18 +231,38 @@ def main():
     parser.add_argument("--window_size", type=int, default=30)
     parser.add_argument("--epochs", type=int, default=30)
     parser.add_argument("--batch_size", type=int, default=32)
+    parser.add_argument("--train_ratio", type=float, default=TRAIN_RATIO)
     parser.add_argument("--output_dir", type=str, default=str(DEFAULT_OUTPUT))
+    parser.add_argument("--config", choices=list(GRU_CONFIGS.keys()), default=GRU_CONFIG_NAME)
+    parser.add_argument("--run_all_configs", action="store_true", default=RUN_ALL_CONFIGS)
+    parser.add_argument("--print_rows", type=int, default=PRINT_ROWS)
     args = parser.parse_args()
 
-    ejecutar_forex(
-        ruta_csv=args.forex_csv,
-        base_currency=args.base_currency,
-        currency=args.currency,
-        window_size=args.window_size,
-        epochs=args.epochs,
-        batch_size=args.batch_size,
-        output_dir=args.output_dir,
-    )
+    configs = list(GRU_CONFIGS.keys()) if args.run_all_configs else [args.config]
+    resumen = []
+    for config_name in configs:
+        run_output = Path(args.output_dir) / config_name if args.run_all_configs else Path(args.output_dir)
+        resumen.append(ejecutar_forex(
+            ruta_csv=args.forex_csv,
+            base_currency=args.base_currency,
+            currency=args.currency,
+            window_size=args.window_size,
+            epochs=args.epochs,
+            batch_size=args.batch_size,
+            output_dir=run_output,
+            config_name=config_name,
+            train_ratio=args.train_ratio,
+            print_rows=args.print_rows,
+        ))
+
+    if len(resumen) > 1:
+        resumen_df = pd.DataFrame(resumen).sort_values("rmse")
+        resumen_path = Path(args.output_dir) / "forex_resumen_configuraciones.csv"
+        resumen_path.parent.mkdir(parents=True, exist_ok=True)
+        resumen_df.to_csv(resumen_path, index=False)
+        print("\nRESUMEN DE CONFIGURACIONES")
+        print(resumen_df.to_string(index=False))
+        print(f"Resumen guardado en: {resumen_path}")
 
 
 if __name__ == "__main__":
