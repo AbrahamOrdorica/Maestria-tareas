@@ -22,6 +22,19 @@ BASE_DIR = Path(__file__).resolve().parent
 DEFAULT_PDF = BASE_DIR / "Cantar del mio Cid.pdf"
 DEFAULT_OUTPUT = BASE_DIR / "outputs" / "cid"
 
+GRU_CONFIG_NAME = "base"
+RUN_ALL_CONFIGS = False
+TRAIN_RATIO = 0.8
+
+GRU_CONFIGS = {
+    "base": {"embedding_dim": 96, "gru_units": 192, "dropout": 0.2, "lr": 0.001},
+    "small_gru": {"embedding_dim": 64, "gru_units": 128, "dropout": 0.2, "lr": 0.001},
+    "large_gru": {"embedding_dim": 128, "gru_units": 256, "dropout": 0.2, "lr": 0.001},
+    "dropout_low": {"embedding_dim": 96, "gru_units": 192, "dropout": 0.1, "lr": 0.001},
+    "dropout_high": {"embedding_dim": 96, "gru_units": 192, "dropout": 0.4, "lr": 0.001},
+    "balanced": {"embedding_dim": 128, "gru_units": 192, "dropout": 0.3, "lr": 0.001},
+}
+
 
 def configurar_gpu(usar_mixed_precision=False):
     gpus = tf.config.list_physical_devices("GPU")
@@ -100,23 +113,23 @@ def crear_tf_dataset(X, y, batch_size, shuffle=False):
     return dataset.batch(batch_size).cache().prefetch(tf.data.AUTOTUNE)
 
 
-def construir_modelo(vocab_size, seq_length, embedding_dim=96, gru_units=192, dropout=0.2):
+def construir_modelo(vocab_size, seq_length, config_name=GRU_CONFIG_NAME):
+    config = GRU_CONFIGS[config_name]
     model = Sequential([
         Input(shape=(seq_length,)),
-        Embedding(input_dim=vocab_size, output_dim=embedding_dim),
-        GRU(gru_units, return_sequences=True, reset_after=True),
-        Dropout(dropout),
-        GRU(gru_units, reset_after=True),
-        Dropout(dropout),
+        Embedding(input_dim=vocab_size, output_dim=config["embedding_dim"]),
+        GRU(config["gru_units"], return_sequences=True, reset_after=True),
+        Dropout(config["dropout"]),
+        GRU(config["gru_units"], reset_after=True),
+        Dropout(config["dropout"]),
         Dense(vocab_size, activation="softmax", dtype="float32"),
     ])
     model.compile(
-        optimizer=Adam(learning_rate=0.001),
+        optimizer=Adam(learning_rate=config["lr"]),
         loss="sparse_categorical_crossentropy",
         metrics=["accuracy"],
     )
     return model
-
 
 def muestrear_prediccion(predicciones, temperatura=0.45, top_k=10):
     predicciones = np.asarray(predicciones).astype("float64")
@@ -174,6 +187,8 @@ def ejecutar_cid(
     output_dir,
     temperatura,
     longitud_generada,
+    config_name=GRU_CONFIG_NAME,
+    train_ratio=TRAIN_RATIO,
     top_k=10,
     max_chars=None,
     patience=5,
@@ -184,17 +199,18 @@ def ejecutar_cid(
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
+    print(f"Configuracion: {config_name} -> {GRU_CONFIGS[config_name]}")
     texto = extraer_texto_pdf(ruta_pdf, max_chars=max_chars)
     X, y, chars, char_to_idx, idx_to_char = crear_dataset_caracteres(texto, seq_length, step)
 
-    train_size = int(len(X) * 0.8)
+    train_size = int(len(X) * train_ratio)
     X_train, X_test = X[:train_size], X[train_size:]
     y_train, y_test = y[:train_size], y[train_size:]
 
     train_ds = crear_tf_dataset(X_train, y_train, batch_size=batch_size, shuffle=True)
     test_ds = crear_tf_dataset(X_test, y_test, batch_size=batch_size, shuffle=False)
 
-    model = construir_modelo(vocab_size=len(chars), seq_length=seq_length)
+    model = construir_modelo(vocab_size=len(chars), seq_length=seq_length, config_name=config_name)
     model.summary()
 
     checkpoint_path = output_dir / "mejor_modelo_gru_cid.keras"
@@ -213,6 +229,7 @@ def ejecutar_cid(
 
     loss, acc = model.evaluate(test_ds, verbose=1)
     print("\nRESULTADOS CANTAR DEL MIO CID")
+    print(f"Configuracion: {config_name}")
     print(f"Loss: {loss:.4f}")
     print(f"Accuracy: {acc:.4f}")
 
@@ -243,8 +260,7 @@ def ejecutar_cid(
     model_path = output_dir / "modelo_gru_cid.keras"
     model.save(model_path)
     print(f"Modelo guardado en: {model_path}")
-    return model
-
+    return {"config": config_name, "loss": loss, "accuracy": acc}
 
 def main():
     parser = argparse.ArgumentParser(description="GRU para prediccion de caracteres con Cantar del Mio Cid")
@@ -253,6 +269,7 @@ def main():
     parser.add_argument("--step", type=int, default=3)
     parser.add_argument("--epochs", type=int, default=50)
     parser.add_argument("--batch_size", type=int, default=256)
+    parser.add_argument("--train_ratio", type=float, default=TRAIN_RATIO)
     parser.add_argument("--output_dir", type=str, default=str(DEFAULT_OUTPUT))
     parser.add_argument("--temperatura", type=float, default=0.45)
     parser.add_argument("--top_k", type=int, default=10)
@@ -260,22 +277,39 @@ def main():
     parser.add_argument("--max_chars", type=int, default=None)
     parser.add_argument("--patience", type=int, default=5)
     parser.add_argument("--mixed_precision", action="store_true")
+    parser.add_argument("--config", choices=list(GRU_CONFIGS.keys()), default=GRU_CONFIG_NAME)
+    parser.add_argument("--run_all_configs", action="store_true", default=RUN_ALL_CONFIGS)
     args = parser.parse_args()
 
-    ejecutar_cid(
-        ruta_pdf=args.pdf,
-        seq_length=args.seq_length,
-        step=args.step,
-        epochs=args.epochs,
-        batch_size=args.batch_size,
-        output_dir=args.output_dir,
-        temperatura=args.temperatura,
-        longitud_generada=args.longitud_generada,
-        top_k=args.top_k,
-        max_chars=args.max_chars,
-        patience=args.patience,
-        usar_mixed_precision=args.mixed_precision,
-    )
+    configs = list(GRU_CONFIGS.keys()) if args.run_all_configs else [args.config]
+    resumen = []
+    for config_name in configs:
+        run_output = Path(args.output_dir) / config_name if args.run_all_configs else Path(args.output_dir)
+        resumen.append(ejecutar_cid(
+            ruta_pdf=args.pdf,
+            seq_length=args.seq_length,
+            step=args.step,
+            epochs=args.epochs,
+            batch_size=args.batch_size,
+            output_dir=run_output,
+            temperatura=args.temperatura,
+            longitud_generada=args.longitud_generada,
+            config_name=config_name,
+            train_ratio=args.train_ratio,
+            top_k=args.top_k,
+            max_chars=args.max_chars,
+            patience=args.patience,
+            usar_mixed_precision=args.mixed_precision,
+        ))
+
+    if len(resumen) > 1:
+        resumen_df = pd.DataFrame(resumen).sort_values("loss")
+        resumen_path = Path(args.output_dir) / "cid_resumen_configuraciones.csv"
+        resumen_path.parent.mkdir(parents=True, exist_ok=True)
+        resumen_df.to_csv(resumen_path, index=False)
+        print("\nRESUMEN DE CONFIGURACIONES")
+        print(resumen_df.to_string(index=False))
+        print(f"Resumen guardado en: {resumen_path}")
 
 
 if __name__ == "__main__":
