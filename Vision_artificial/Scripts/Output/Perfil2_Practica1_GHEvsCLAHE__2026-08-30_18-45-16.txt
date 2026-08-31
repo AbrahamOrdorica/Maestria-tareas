@@ -1,0 +1,108 @@
+2026-08-30 18:45:16,394 - INFO - ================================================================================
+2026-08-30 18:45:16,396 - INFO - 🚀 STARTING PRACTICE NO. 1: Color enhacement Global Histogram Equalization (GHE)vs Contrast Limited Adaptative Histogram Equalization (CLAHE)
+2026-08-30 18:45:16,398 - INFO - ================================================================================
+
+2026-08-30 18:45:16,398 - INFO - 💻 Machine: PC_ABRAHAM | Date: 2026-08-30_18-45-16
+2026-08-30 18:45:16,399 - INFO - 📁 Input Directory: D:\Abraham\MyRepos\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Sesion_1\Samples
+2026-08-30 18:45:16,401 - INFO - 📁 Output Directory: D:\Abraham\MyRepos\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Scripts\Output
+2026-08-30 18:45:16,402 - INFO - 📱 Allowed image extensions: ('*.png', '*.jpg', '*.jpeg', '*.bmp', '*.tif')
+2026-08-30 18:45:16,403 - INFO - 🎨 Color spaces to compare: ['LAB', 'HSV']
+2026-08-30 18:45:16,403 - INFO - 🔧 CLAHE configurations (4 setups):
+   - Clip Limit: 2.0, Tile Grid: (8, 8)
+   - Clip Limit: 4.0, Tile Grid: (8, 8)
+   - Clip Limit: 2.0, Tile Grid: (16, 16)
+   - Clip Limit: 4.0, Tile Grid: (16, 16)
+2026-08-30 18:45:16,428 - INFO - ------- SECTION 1: Data Load -------
+2026-08-30 18:45:16,429 - INFO - ⌛ Scanning directory: D:\Abraham\MyRepos\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Sesion_1\Samples
+2026-08-30 18:45:16,434 - INFO - 🔍 Total image files detected: 5
+2026-08-30 18:45:16,682 - DEBUG -   📄 Loaded: Alexa.jpg | Dimensions: (6000, 4000, 3)
+2026-08-30 18:45:16,788 - DEBUG -   📄 Loaded: Buenos_Aires.jpg | Dimensions: (2295, 4080, 3)
+2026-08-30 18:45:16,895 - DEBUG -   📄 Loaded: Piano_Man.jpg | Dimensions: (4000, 6000, 3)
+2026-08-30 18:45:17,154 - DEBUG -   📄 Loaded: Tatto_Studio.jpg | Dimensions: (6000, 4000, 3)
+2026-08-30 18:45:17,390 - DEBUG -   📄 Loaded: Ushuaia.jpg | Dimensions: (6000, 4000, 3)
+2026-08-30 18:45:17,391 - INFO - ✅ Successfully loaded 5 of 5 images.
+2026-08-30 18:45:17,392 - INFO - ---- SECTION 1 (END): Data Load ----
+
+
+2026-08-30 18:45:17,454 - INFO - ------- SECTION 2: Processing Imagges -------
+2026-08-30 18:45:17,458 - INFO - ⌛ [1/5] Processing image: Alexa.jpg
+2026-08-30 18:45:18,335 - DEBUG -   📄 Alexa.jpg | Global Eq (LAB) -> RMS: 0.2970, Blue Px: 4891897
+2026-08-30 18:45:18,771 - DEBUG -   📄 Alexa.jpg | CLAHE (LAB, clip=2.0, grid=8x8) -> RMS: 0.2209
+2026-08-30 18:45:19,213 - DEBUG -   📄 Alexa.jpg | CLAHE (LAB, clip=4.0, grid=8x8) -> RMS: 0.2399
+2026-08-30 18:45:19,609 - DEBUG -   📄 Alexa.jpg | CLAHE (LAB, clip=2.0, grid=16x16) -> RMS: 0.2108
+2026-08-30 18:45:20,010 - DEBUG -   📄 Alexa.jpg | CLAHE (LAB, clip=4.0, grid=16x16) -> RMS: 0.2309
+2026-08-30 18:45:20,336 - DEBUG -   📄 Alexa.jpg | Global Eq (HSV) -> RMS: 0.2766, Blue Px: 16538897
+2026-08-30 18:45:20,666 - DEBUG -   📄 Alexa.jpg | CLAHE (HSV, clip=2.0, grid=8x8) -> RMS: 0.2705
+2026-08-30 18:45:20,978 - DEBUG -   📄 Alexa.jpg | CLAHE (HSV, clip=4.0, grid=8x8) -> RMS: 0.2784
+2026-08-30 18:45:21,297 - DEBUG -   📄 Alexa.jpg | CLAHE (HSV, clip=2.0, grid=16x16) -> RMS: 0.2636
+2026-08-30 18:45:21,613 - DEBUG -   📄 Alexa.jpg | CLAHE (HSV, clip=4.0, grid=16x16) -> RMS: 0.2709
+2026-08-30 18:45:21,615 - INFO - ⌛ [2/5] Processing image: Buenos_Aires.jpg
+2026-08-30 18:45:21,881 - DEBUG -   📄 Buenos_Aires.jpg | Global Eq (LAB) -> RMS: 0.2897, Blue Px: 2000030
+2026-08-30 18:45:22,033 - DEBUG -   📄 Buenos_Aires.jpg | CLAHE (LAB, clip=2.0, grid=8x8) -> RMS: 0.2714
+2026-08-30 18:45:22,175 - DEBUG -   📄 Buenos_Aires.jpg | CLAHE (LAB, clip=4.0, grid=8x8) -> RMS: 0.2759
+2026-08-30 18:45:22,320 - DEBUG -   📄 Buenos_Aires.jpg | CLAHE (LAB, clip=2.0, grid=16x16) -> RMS: 0.2657
+2026-08-30 18:45:22,465 - DEBUG -   📄 Buenos_Aires.jpg | CLAHE (LAB, clip=4.0, grid=16x16) -> RMS: 0.2720
+2026-08-30 18:45:22,590 - DEBUG -   📄 Buenos_Aires.jpg | Global Eq (HSV) -> RMS: 0.2895, Blue Px: 2472014
+2026-08-30 18:45:22,712 - DEBUG -   📄 Buenos_Aires.jpg | CLAHE (HSV, clip=2.0, grid=8x8) -> RMS: 0.2710
+2026-08-30 18:45:22,832 - DEBUG -   📄 Buenos_Aires.jpg | CLAHE (HSV, clip=4.0, grid=8x8) -> RMS: 0.2765
+2026-08-30 18:45:22,953 - DEBUG -   📄 Buenos_Aires.jpg | CLAHE (HSV, clip=2.0, grid=16x16) -> RMS: 0.2655
+2026-08-30 18:45:23,074 - DEBUG -   📄 Buenos_Aires.jpg | CLAHE (HSV, clip=4.0, grid=16x16) -> RMS: 0.2719
+2026-08-30 18:45:23,075 - INFO - ⌛ [3/5] Processing image: Piano_Man.jpg
+2026-08-30 18:45:23,727 - DEBUG -   📄 Piano_Man.jpg | Global Eq (LAB) -> RMS: 0.2435, Blue Px: 0
+2026-08-30 18:45:24,092 - DEBUG -   📄 Piano_Man.jpg | CLAHE (LAB, clip=2.0, grid=8x8) -> RMS: 0.1130
+2026-08-30 18:45:24,493 - DEBUG -   📄 Piano_Man.jpg | CLAHE (LAB, clip=4.0, grid=8x8) -> RMS: 0.1202
+2026-08-30 18:45:24,865 - DEBUG -   📄 Piano_Man.jpg | CLAHE (LAB, clip=2.0, grid=16x16) -> RMS: 0.1103
+2026-08-30 18:45:25,240 - DEBUG -   📄 Piano_Man.jpg | CLAHE (LAB, clip=4.0, grid=16x16) -> RMS: 0.1168
+2026-08-30 18:45:25,540 - DEBUG -   📄 Piano_Man.jpg | Global Eq (HSV) -> RMS: 0.2539, Blue Px: 1874
+2026-08-30 18:45:25,852 - DEBUG -   📄 Piano_Man.jpg | CLAHE (HSV, clip=2.0, grid=8x8) -> RMS: 0.1358
+2026-08-30 18:45:26,164 - DEBUG -   📄 Piano_Man.jpg | CLAHE (HSV, clip=4.0, grid=8x8) -> RMS: 0.1471
+2026-08-30 18:45:26,478 - DEBUG -   📄 Piano_Man.jpg | CLAHE (HSV, clip=2.0, grid=16x16) -> RMS: 0.1312
+2026-08-30 18:45:26,780 - DEBUG -   📄 Piano_Man.jpg | CLAHE (HSV, clip=4.0, grid=16x16) -> RMS: 0.1408
+2026-08-30 18:45:26,781 - INFO - ⌛ [4/5] Processing image: Tatto_Studio.jpg
+2026-08-30 18:45:27,420 - DEBUG -   📄 Tatto_Studio.jpg | Global Eq (LAB) -> RMS: 0.2833, Blue Px: 42463
+2026-08-30 18:45:27,779 - DEBUG -   📄 Tatto_Studio.jpg | CLAHE (LAB, clip=2.0, grid=8x8) -> RMS: 0.2770
+2026-08-30 18:45:28,165 - DEBUG -   📄 Tatto_Studio.jpg | CLAHE (LAB, clip=4.0, grid=8x8) -> RMS: 0.2845
+2026-08-30 18:45:28,545 - DEBUG -   📄 Tatto_Studio.jpg | CLAHE (LAB, clip=2.0, grid=16x16) -> RMS: 0.2711
+2026-08-30 18:45:28,921 - DEBUG -   📄 Tatto_Studio.jpg | CLAHE (LAB, clip=4.0, grid=16x16) -> RMS: 0.2772
+2026-08-30 18:45:29,221 - DEBUG -   📄 Tatto_Studio.jpg | Global Eq (HSV) -> RMS: 0.2847, Blue Px: 2821888
+2026-08-30 18:45:29,527 - DEBUG -   📄 Tatto_Studio.jpg | CLAHE (HSV, clip=2.0, grid=8x8) -> RMS: 0.2810
+2026-08-30 18:45:29,841 - DEBUG -   📄 Tatto_Studio.jpg | CLAHE (HSV, clip=4.0, grid=8x8) -> RMS: 0.2864
+2026-08-30 18:45:30,159 - DEBUG -   📄 Tatto_Studio.jpg | CLAHE (HSV, clip=2.0, grid=16x16) -> RMS: 0.2742
+2026-08-30 18:45:30,467 - DEBUG -   📄 Tatto_Studio.jpg | CLAHE (HSV, clip=4.0, grid=16x16) -> RMS: 0.2789
+2026-08-30 18:45:30,469 - INFO - ⌛ [5/5] Processing image: Ushuaia.jpg
+2026-08-30 18:45:31,132 - DEBUG -   📄 Ushuaia.jpg | Global Eq (LAB) -> RMS: 0.2912, Blue Px: 8321814
+2026-08-30 18:45:31,551 - DEBUG -   📄 Ushuaia.jpg | CLAHE (LAB, clip=2.0, grid=8x8) -> RMS: 0.2653
+2026-08-30 18:45:31,966 - DEBUG -   📄 Ushuaia.jpg | CLAHE (LAB, clip=4.0, grid=8x8) -> RMS: 0.2598
+2026-08-30 18:45:32,381 - DEBUG -   📄 Ushuaia.jpg | CLAHE (LAB, clip=2.0, grid=16x16) -> RMS: 0.2660
+2026-08-30 18:45:32,789 - DEBUG -   📄 Ushuaia.jpg | CLAHE (LAB, clip=4.0, grid=16x16) -> RMS: 0.2624
+2026-08-30 18:45:33,132 - DEBUG -   📄 Ushuaia.jpg | Global Eq (HSV) -> RMS: 0.3098, Blue Px: 9095177
+2026-08-30 18:45:33,481 - DEBUG -   📄 Ushuaia.jpg | CLAHE (HSV, clip=2.0, grid=8x8) -> RMS: 0.2835
+2026-08-30 18:45:33,820 - DEBUG -   📄 Ushuaia.jpg | CLAHE (HSV, clip=4.0, grid=8x8) -> RMS: 0.2803
+2026-08-30 18:45:34,118 - DEBUG -   📄 Ushuaia.jpg | CLAHE (HSV, clip=2.0, grid=16x16) -> RMS: 0.2821
+2026-08-30 18:45:34,405 - DEBUG -   📄 Ushuaia.jpg | CLAHE (HSV, clip=4.0, grid=16x16) -> RMS: 0.2808
+2026-08-30 18:45:34,439 - INFO - ---- SECTION 2 (END): Processing Images ----
+
+
+2026-08-30 18:45:34,485 - INFO - ------- SECTION 3: Export Results Dataset -------
+2026-08-30 18:45:34,488 - INFO - 🧹 'CLEAN_LOGS' active. Found 1 previous metric CSV(s) to remove.
+2026-08-30 18:45:34,490 - INFO - 🗑️ Deleted previous dataset: Perfil2_Practica1_GHEvsCLAHE_Metrics__2026-08-30_18-07-43.csv
+2026-08-30 18:45:34,508 - INFO - ✅ Results exported successfully to: D:\Abraham\MyRepos\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Scripts\Output\Perfil2_Practica1_GHEvsCLAHE_Metrics__2026-08-30_18-45-16.csv
+2026-08-30 18:45:34,509 - INFO - 📊 Table shape: 50 rows x 10 columns.
+2026-08-30 18:45:34,510 - INFO - ------- SECTION 3 (END): Export Results Dataset -------
+2026-08-30 18:45:34,534 - INFO - ------- SECTION 4: Generate image comparison -------
+2026-08-30 18:45:34,538 - INFO - 🗑️ Deleted: Perfil2_Practica1_GHEvsCLAHE__2026-08-30_18-07-43_Fig_Alexa_(LAB).png
+2026-08-30 18:45:34,540 - INFO - 🗑️ Deleted: Perfil2_Practica1_GHEvsCLAHE__2026-08-30_18-07-43_Fig_Buenos_Aires_(LAB).png
+2026-08-30 18:45:34,542 - INFO - 🗑️ Deleted: Perfil2_Practica1_GHEvsCLAHE__2026-08-30_18-07-43_Fig_Piano_Man_(LAB).png
+2026-08-30 18:45:34,543 - INFO - 🗑️ Deleted: Perfil2_Practica1_GHEvsCLAHE__2026-08-30_18-07-43_Fig_Tatto_Studio_(LAB).png
+2026-08-30 18:45:34,545 - INFO - 🗑️ Deleted: Perfil2_Practica1_GHEvsCLAHE__2026-08-30_18-07-43_Fig_Ushuaia_(LAB).png
+2026-08-30 18:45:34,546 - INFO - 🔎 Generating comparative panel for: Alexa.jpg (Space: HSV)
+2026-08-30 18:45:53,431 - INFO - ✅ Figure saved to: D:\Abraham\MyRepos\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Scripts\Output\Perfil2_Practica1_GHEvsCLAHE__2026-08-30_18-45-16_Fig_Alexa_(HSV).png
+2026-08-30 18:46:03,861 - INFO - 🔎 Generating comparative panel for: Buenos_Aires.jpg (Space: HSV)
+2026-08-30 18:46:12,192 - INFO - ✅ Figure saved to: D:\Abraham\MyRepos\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Scripts\Output\Perfil2_Practica1_GHEvsCLAHE__2026-08-30_18-45-16_Fig_Buenos_Aires_(HSV).png
+2026-08-30 18:46:16,355 - INFO - 🔎 Generating comparative panel for: Piano_Man.jpg (Space: HSV)
+2026-08-30 18:46:35,175 - INFO - ✅ Figure saved to: D:\Abraham\MyRepos\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Scripts\Output\Perfil2_Practica1_GHEvsCLAHE__2026-08-30_18-45-16_Fig_Piano_Man_(HSV).png
+2026-08-30 18:46:47,074 - INFO - 🔎 Generating comparative panel for: Tatto_Studio.jpg (Space: HSV)
+2026-08-30 18:47:09,211 - INFO - ✅ Figure saved to: D:\Abraham\MyRepos\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Scripts\Output\Perfil2_Practica1_GHEvsCLAHE__2026-08-30_18-45-16_Fig_Tatto_Studio_(HSV).png
+2026-08-30 18:47:22,269 - INFO - 🔎 Generating comparative panel for: Ushuaia.jpg (Space: HSV)
+2026-08-30 18:47:44,094 - INFO - ✅ Figure saved to: D:\Abraham\MyRepos\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Scripts\Output\Perfil2_Practica1_GHEvsCLAHE__2026-08-30_18-45-16_Fig_Ushuaia_(HSV).png
+2026-08-30 18:47:56,058 - INFO - ------- SECTION 4 (END): Generate image comparison -------

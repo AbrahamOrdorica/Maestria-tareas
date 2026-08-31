@@ -1,0 +1,43 @@
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:REQUEST
+BEGIN:VTIMEZONE
+TZID:America/Mexico_City
+X-LIC-LOCATION:America/Mexico_City
+BEGIN:STANDARD
+TZOFFSETFROM:-0600
+TZOFFSETTO:-0600
+TZNAME:CST
+DTSTART:19700101T000000
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTART;TZID=America/Mexico_City:20260828T110000
+DTEND;TZID=America/Mexico_City:20260828T114500
+DTSTAMP:20260827T165053Z
+ORGANIZER;CN=Isaac Avalos:mailto:lzuniga@grupoeducare.com
+UID:3t8k6dsh5q6mv670invmk2j8l7@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=abraham.ordorica.islas@gmail.com;X-NUM-GUESTS=0:mailto:abraham.ordo
+ rica.islas@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;RSVP=TRUE
+ ;CN=Isaac Avalos;X-NUM-GUESTS=0:mailto:lzuniga@grupoeducare.com
+X-GOOGLE-CONFERENCE:https://meet.google.com/ioh-oqqe-wdy
+X-MICROSOFT-CDO-OWNERAPPTID:-1236270921
+CREATED:20260827T164356Z
+DESCRIPTION:-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~::~:~::-\nUnirse con Google Meet: https://meet.google.com/i
+ oh-oqqe-wdy\nO marca el (US) +1 319-483-6988 PIN: 642226740#\n\nMás informa
+ ción sobre Meet: https://support.google.com/a/users/answer/9282720\n\nNo ed
+ ites esta sección.\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
+LAST-MODIFIED:20260827T165052Z
+LOCATION:https://meet.google.com/ioh-oqqe-wdy
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Propuesta - Brazo robótico
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR
