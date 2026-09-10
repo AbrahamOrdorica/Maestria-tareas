@@ -1,0 +1,43 @@
+2026-09-08 19:58:12,880 - INFO - ================================================================================
+2026-09-08 19:58:12,882 - INFO - 🚀 STARTING PRACTICE NO. 1: Color enhacement Global Histogram Equalization (GHE)vs Contrast Limited Adaptative Histogram Equalization (CLAHE)
+2026-09-08 19:58:12,882 - INFO - ================================================================================
+
+2026-09-08 19:58:12,883 - INFO - 📱 Allowed image extensions: ('*.png', '*.jpg', '*.jpeg', '*.bmp', '*.tif')
+2026-09-08 19:58:12,933 - INFO - 🎨 Color spaces to compare: ['LAB', 'HSV']
+2026-09-08 19:58:12,934 - INFO - 🔧 CLAHE configurations (4 setups):
+   - Clip Limit: 2.0, Tile Grid: (8, 8)
+   - Clip Limit: 4.0, Tile Grid: (8, 8)
+   - Clip Limit: 2.0, Tile Grid: (16, 16)
+   - Clip Limit: 4.0, Tile Grid: (16, 16)
+2026-09-08 19:58:12,948 - INFO - ------- SECTION 1: Data Load -------
+2026-09-08 19:58:12,948 - INFO - ⌛ Scanning directory: D:\Personal\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Sesion_1\Samples
+2026-09-08 19:58:12,949 - INFO - 🔍 Total image files detected: 5
+2026-09-08 19:58:13,751 - INFO - ✅ Successfully loaded 5 of 5 images.
+2026-09-08 19:58:13,752 - INFO - ---- SECTION 1 (END): Data Load ----
+
+
+2026-09-08 19:58:13,794 - INFO - ------- SECTION 2: Processing Imagges -------
+2026-09-08 19:58:13,799 - INFO - ⌛ [1/5] Processing image: Alexa.jpg
+2026-09-08 19:58:16,795 - INFO - ⌛ [2/5] Processing image: Buenos_Aires.jpg
+2026-09-08 19:58:18,130 - INFO - ⌛ [3/5] Processing image: Piano_Man.jpg
+2026-09-08 19:58:21,182 - INFO - ⌛ [4/5] Processing image: Tatto_Studio.jpg
+2026-09-08 19:58:24,145 - INFO - ⌛ [5/5] Processing image: Ushuaia.jpg
+2026-09-08 19:58:27,163 - INFO - ---- SECTION 2 (END): Processing Images ----
+
+
+2026-09-08 19:58:27,176 - INFO - ------- SECTION 3: Export Results Dataset -------
+2026-09-08 19:58:27,182 - INFO - ✅ Results exported successfully to: D:\Personal\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Scripts\Output\Script1\Perfil2_Practica1_GHEvsCLAHE_Metrics__2026-09-08_19-58-12.csv
+2026-09-08 19:58:27,183 - INFO - 📊 Table shape: 50 rows x 10 columns.
+2026-09-08 19:58:27,184 - INFO - ------- SECTION 3 (END): Export Results Dataset -------
+2026-09-08 19:58:27,203 - INFO - ------- SECTION 4: Generate image comparison -------
+2026-09-08 19:58:27,205 - INFO - 🔎 Generating comparative panel for: Alexa.jpg (Space: LAB)
+2026-09-08 19:58:58,217 - INFO - ✅ Figure saved to: D:\Personal\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Scripts\Output\Script1\Perfil2_Practica1_GHEvsCLAHE__2026-09-08_19-58-12_Fig_Alexa_(LAB).png
+2026-09-08 19:59:16,326 - INFO - 🔎 Generating comparative panel for: Buenos_Aires.jpg (Space: LAB)
+2026-09-08 19:59:29,953 - INFO - ✅ Figure saved to: D:\Personal\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Scripts\Output\Script1\Perfil2_Practica1_GHEvsCLAHE__2026-09-08_19-58-12_Fig_Buenos_Aires_(LAB).png
+2026-09-08 19:59:37,679 - INFO - 🔎 Generating comparative panel for: Piano_Man.jpg (Space: LAB)
+2026-09-08 20:00:10,461 - INFO - ✅ Figure saved to: D:\Personal\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Scripts\Output\Script1\Perfil2_Practica1_GHEvsCLAHE__2026-09-08_19-58-12_Fig_Piano_Man_(LAB).png
+2026-09-08 20:00:29,751 - INFO - 🔎 Generating comparative panel for: Tatto_Studio.jpg (Space: LAB)
+2026-09-08 20:01:00,612 - INFO - ✅ Figure saved to: D:\Personal\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Scripts\Output\Script1\Perfil2_Practica1_GHEvsCLAHE__2026-09-08_19-58-12_Fig_Tatto_Studio_(LAB).png
+2026-09-08 20:01:19,112 - INFO - 🔎 Generating comparative panel for: Ushuaia.jpg (Space: LAB)
+2026-09-08 20:01:49,634 - INFO - ✅ Figure saved to: D:\Personal\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Scripts\Output\Script1\Perfil2_Practica1_GHEvsCLAHE__2026-09-08_19-58-12_Fig_Ushuaia_(LAB).png
+2026-09-08 20:02:07,681 - INFO - ------- SECTION 4 (END): Generate image comparison -------
