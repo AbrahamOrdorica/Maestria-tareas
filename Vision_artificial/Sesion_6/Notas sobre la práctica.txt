@@ -1,0 +1,52 @@
+Primera iteración:
+-Parámetros: 692,260
+-Todos los parámetros igual, sin early stopping
+-56% o 58% ambos modelos sólo durante el entrenamiento
+
+
+Segunda iteración:
+-bajé la pérdida de neuronas (dropout) a 15%, 15%, 20%  y 25%, en lugar de 25%,25%, 30% y 50%
+-Utilicé Early stop con un min delta de 0.005, patience =4
+-55% modelo A y 64% Modelo B sólo durante el entrenamiento
+
+Tercera iteración:
+-Modifiqué el Early Stop de patience = 5, min_delta = 0.003
+-Aumenté el número de epocas= 30
+-Modelo A, logró un accuracy de 61.79% con Early Stop y el Modelo B logró aproximadamente lo mismo (61.59%), en la misma iteración.
+
+Cuarta Iteracion:
+- Agregué un Learning Rate dinámico con lr_scheduler y se inicializó el learning rate general a 0.01
+- La red A llegó a un Accuracy de 61.12% y la red B a un 44.84% (olvidé agregar lr_scheduler en el modelo B)
+
+Quinta iteración:
+- Se vuelve al min_delta=0.005 y patience =4
+- Se devuelve el learning rate inicial a (learning_rate=0.001)
+- La red A llegó a un Accuracy de aproximadamente 78% y la red B a un 60.35% durante el entrenamiento (olvidé agregar lr_escheduler en el modelo B)
+- Hasta esta iteración sólo se había reportado un Accuracy de entrenamiento, el Accuracy real (validación) es de 56.08% para el modelo A y de 52.61% para el modelo B. Este es el Accuracy final reportado hasta ahora
+
+Sexta iteración: 
+-Se agregó un Learning rate adaptativo al modelo b, sólo para evaluarlo en igualdad de condiciones con el modelo A
+-La red A llegó a un Accuracy de aproximadamente 78.45% en el entrenamiento, la red B logró arriba del 81.18%
+-Los resultados del modelo final mostraron un Accuracy del 56.08% para la red A en el modelo final y un 56.25% para la red B.
+
+Séptima iteración: 
+-Se regresó el dropout de las capas a 25, 25, 30 y 50 
+-La red A llegó a un Accuracy de aproximadamente 52.54% en el entrenamiento, la red B logró arriba del 60.95% sólo durante el entrenamiento
+-Los valores finales de ambas redes son Red A: 53.10% y Red B: 57.63%
+
+
+Octava iteración:
+-Se redujo el output de las capas a 20, 20, 25 y 40 y se reentrenó toda la red completa
+Los resultados fueron los siguientes:
+=== EVALUANDO MODELO A (RGB) EN TEST ===
+[1m313/313[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 21ms/step - accuracy: 0.5713 - loss: 1.8681
+--> Exactitud final Modelo A (RGB): 57.13%
+
+==================================================
+
+=== EVALUANDO MODELO B (RGB + Sobel) EN TEST ===
+[1m313/313[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 21ms/step - accuracy: 0.5458 - loss: 2.0235
+--> Exactitud final Modelo B (RGB + Sobel): 54.58%
+
+Novena Iteración: 
+-Se cambió la semilla 1 por la semilla 2, de 42 a 30
