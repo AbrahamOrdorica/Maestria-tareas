@@ -1,0 +1,207 @@
+2026-11-10 16:10:22,709 - INFO - ================================================================================
+2026-11-10 16:10:22,710 - INFO - 🚀 INICIANDO ETAPA DE CÁLCULO DE SCORE DE RIESGO METABÓLICO CONTINUO
+2026-11-10 16:10:22,711 - INFO - ================================================================================
+
+
+2026-11-10 16:10:22,730 - INFO - -------SECCION 1: Carga de Datasets y Tabla de Betas-------
+2026-11-10 16:10:22,732 - INFO - ⌛ Cargando Dataset de Superclases: 1_Concatenar_y_Estandarizar_HJM_Superclasses_2021.parquet
+2026-11-10 16:10:23,008 - INFO - ✅ Dataset cargado. Dimensiones: 87027 filas x 1184 columnas.
+2026-11-10 16:10:23,009 - INFO - ⌛ Cargando Tabla de Betas: 2_Regresion_logistica_DMT2_HJM_Betas_Comorbilidades_2021.parquet
+2026-11-10 16:10:23,015 - INFO - ✅ Tabla de Betas cargada (1177 coeficientes registrados).
+2026-11-10 16:10:23,404 - INFO - ✅ Variable 'Edad' re-estandarizada correctamente con StandardScaler.
+2026-11-10 16:10:23,410 - INFO - 📌 Intercepto base (Beta_0): 6.3613
+2026-11-10 16:10:23,728 - INFO - ✅ Puntuación ponderada calculada considerando 1177 variables/comorbilidades.
+2026-11-10 16:10:23,731 - INFO - 📊 Estadísticas de la Señal Continua de Riesgo Metabólico (Z):
+2026-11-10 16:10:23,732 - INFO -    Mínimo: -10.4302 | Máximo: 7.1464 | Media: -2.1583 | Std: 1.9931
+2026-11-10 16:10:23,813 - INFO - 💾 Dataset guardado exitosamente en: D:\Abraham\MyRepos\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Sesion_4\Output\3_Dataset_Con_Score_Deterioro_Metabolico_2021.parquet
+2026-11-10 16:10:23,814 - INFO - -------SECCION 1: Carga de Datasets y Tabla de Betas (FIN)-------
+2026-11-10 16:10:23,830 - INFO - -------SECCION 2: Separación del Dataset por género -------
+2026-11-10 16:10:23,854 - INFO - Valores de la columna 'Sex' convertidos a números enteros (2 y 1)
+2026-11-10 16:10:23,945 - INFO - ✅ Registros separados -> Hombres: 28985 | Mujeres: 58042
+2026-11-10 16:10:24,389 - INFO - 📊 Gráfica guardada exitosamente en: D:\Abraham\MyRepos\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Sesion_4\Output\Grafica_Deterioro_Metabolico_Hombres_Mujeres_2021.png
+2026-11-10 16:10:24,522 - INFO - -------SECCION 2: Separación del Dataset por género (FIN)-------
+2026-11-10 16:10:24,539 - INFO - -------SECCION 3: Analogía del análisis de Hough -------
+2026-11-10 16:10:24,544 - INFO - ✅ Análisis de Hough (Top 10%) completado:
+   - Hombres: 8 keypoints detectados (Umbral 90%: 0.5169)
+   - Mujeres: 8 keypoints detectados (Umbral 90%: 0.7119)
+
+2026-11-10 16:10:24,545 - INFO - 🔍 [DEBUG] Inspección completa del dataset de Hombres (Hough):
+2026-11-10 16:10:24,548 - INFO -     Edad   Score_Z  gradient  accumulator_norm  is_keypoint
+0     20 -2.918086  0.055712          0.000000        False
+1     21 -2.862374  0.000323          0.000000        False
+2     22 -2.917440  0.031674          0.000000        False
+3     23 -2.799026 -0.028591          0.000000        False
+4     24 -2.974622  0.063198          0.000000        False
+5     25 -2.672629  0.088021          0.000000        False
+6     26 -2.798579 -0.053430          0.000000        False
+7     27 -2.779488 -0.093874          0.000000        False
+8     28 -2.986328  0.075122          0.000000        False
+9     29 -2.629245  0.134620          0.000000        False
+10    30 -2.717087 -0.053846          0.000000        False
+11    31 -2.736936  0.044230          0.000000        False
+12    32 -2.628627  0.096409          0.000000        False
+13    33 -2.544118  0.247038          0.000000        False
+14    34 -2.134552  0.063791          0.000000        False
+15    35 -2.416537 -0.105025          0.000000        False
+16    36 -2.344601  0.071795          0.000000        False
+17    37 -2.272947  0.036004          0.000000        False
+18    38 -2.272594 -0.006928          0.000000        False
+19    39 -2.286802  0.010836          0.000000        False
+20    40 -2.250923 -0.008295          0.000000        False
+21    41 -2.303392  0.051262          0.022522        False
+22    42 -2.148398  0.137396          0.046966        False
+23    43 -2.028600  0.017430          0.069426        False
+24    44 -2.113539  0.064824          0.067723        False
+25    45 -1.898952  0.179563          0.084675        False
+26    46 -1.754413  0.014776          0.101221        False
+27    47 -1.869401 -0.005928          0.105173        False
+28    48 -1.766268  0.011240          0.130949        False
+29    49 -1.846921 -0.056529          0.098865        False
+30    50 -1.879326 -0.067572          0.078145        False
+31    51 -1.982065  0.069276          0.109365        False
+32    52 -1.740774  0.100741          0.096979        False
+33    53 -1.780582 -0.060852          0.096175        False
+34    54 -1.862477  0.052425          0.100636        False
+35    55 -1.675732  0.159576          0.122108        False
+36    56 -1.543325 -0.005352          0.140491        False
+37    57 -1.686436 -0.110925          0.168969        False
+38    58 -1.765175  0.046730          0.170226        False
+39    59 -1.592976  0.064340          0.143427        False
+40    60 -1.636494 -0.100071          0.138973        False
+41    61 -1.793118  0.083754          0.094320        False
+42    62 -1.468985  0.135917          0.103544        False
+43    63 -1.521284 -0.138024          0.216508        False
+44    64 -1.745033 -0.084210          0.178502        False
+45    65 -1.689703  0.020326          0.148488        False
+46    66 -1.704382 -0.005615          0.332093        False
+47    67 -1.700934 -0.035811          0.270670        False
+48    68 -1.776005  0.017856          0.188641        False
+49    69 -1.665222  0.062291          0.296030        False
+50    70 -1.651423  0.019758          0.327156        False
+51    71 -1.625705  0.116706          0.389542        False
+52    72 -1.418012  0.088072          0.452078        False
+53    73 -1.449561 -0.125047          0.398838        False
+54    74 -1.668106  0.015831          0.520985         True
+55    75 -1.417898  0.011068          0.576100         True
+56    76 -1.645969  0.024569          0.306084        False
+57    77 -1.368761  0.290941          0.366322        False
+58    78 -1.064086 -0.120429          0.546304         True
+59    79 -1.609620 -0.155052          0.528333         True
+60    80 -1.374189  0.351904          0.613856         True
+61    81 -0.905812 -0.106262          1.000000         True
+62    82 -1.586712 -0.104329          0.887285         True
+63    83 -1.114470  0.145788          0.516498        False
+64    84 -1.295135  0.090009          0.617067         True
+65    85 -0.934451  0.284346          0.000000        False
+66    86 -0.726443  0.119720          0.000000        False
+67    87 -0.695012 -0.217404          0.000000        False
+68    88 -1.161250  0.250947          0.000000        False
+69    89 -0.193119  0.170330          0.000000        False
+70    90 -0.820591 -0.619330          0.000000        False
+71    91 -1.431779  0.173506          0.000000        False
+72    92 -0.473579  0.469216          0.000000        False
+73    93 -0.493347 -0.171304          0.000000        False
+74    94 -0.816187  0.033566          0.000000        False
+75    95 -0.426214  0.709867          0.000000        False
+76    96  0.603547 -0.261527          0.000000        False
+77    97 -0.949268 -0.675098          0.000000        False
+78    98 -0.746648  0.155787          0.000000        False
+79    99 -0.637694  0.108954          0.000000        False
+
+2026-11-10 16:10:24,549 - INFO - 🔍 [DEBUG] Inspección completa del dataset de Mujeres (Hough):
+2026-11-10 16:10:24,552 - INFO -     Edad   Score_Z  gradient  accumulator_norm  is_keypoint
+0     20 -3.096457  0.024085          0.000000        False
+1     21 -3.072371 -0.025510          0.000000        False
+2     22 -3.147477  0.011007          0.000000        False
+3     23 -3.050358  0.026930          0.000000        False
+4     24 -3.093616 -0.020543          0.000000        False
+5     25 -3.091445  0.040401          0.000000        False
+6     26 -3.012814  0.048980          0.000000        False
+7     27 -2.993485 -0.045187          0.000000        False
+8     28 -3.103189 -0.035372          0.000000        False
+9     29 -3.064228  0.089974          0.000000        False
+10    30 -2.923241  0.036864          0.000000        False
+11    31 -2.990499 -0.020658          0.000000        False
+12    32 -2.964557  0.075460          0.000000        False
+13    33 -2.839578  0.129793          0.000000        False
+14    34 -2.704970  0.050806          0.000000        False
+15    35 -2.737965  0.027948          0.000000        False
+16    36 -2.649074 -0.056772          0.000000        False
+17    37 -2.851509 -0.035447          0.000000        False
+18    38 -2.719968  0.056339          0.000000        False
+19    39 -2.738831  0.013876          0.000000        False
+20    40 -2.692216  0.083695          0.000000        False
+21    41 -2.571441  0.018918          0.000000        False
+22    42 -2.654379 -0.022987          0.000000        False
+23    43 -2.617416  0.050624          0.015219        False
+24    44 -2.553130  0.142660          0.016130        False
+25    45 -2.332095 -0.007702          0.031694        False
+26    46 -2.568533 -0.075759          0.030527        False
+27    47 -2.483614  0.055151          0.052332        False
+28    48 -2.458231  0.121787          0.073312        False
+29    49 -2.240040  0.031993          0.083278        False
+30    50 -2.394246 -0.055969          0.094265        False
+31    51 -2.351977  0.011455          0.102417        False
+32    52 -2.371335  0.062334          0.132536        False
+33    53 -2.227310  0.066054          0.170129        False
+34    54 -2.239227  0.008548          0.185582        False
+35    55 -2.210214  0.096173          0.216976        False
+36    56 -2.046882  0.088562          0.234149        False
+37    57 -2.033090 -0.073388          0.246905        False
+38    58 -2.193658  0.020598          0.297942        False
+39    59 -1.991894  0.072579          0.339155        False
+40    60 -2.048499  0.001009          0.321788        False
+41    61 -1.989876  0.113311          0.350045        False
+42    62 -1.821878  0.129768          0.372403        False
+43    63 -1.730340  0.027055          0.386665        False
+44    64 -1.767768 -0.007235          0.424920        False
+45    65 -1.744810 -0.038388          0.475983        False
+46    66 -1.844544  0.062162          0.590846        False
+47    67 -1.620485  0.108075          0.679018        False
+48    68 -1.628394  0.035141          0.711794        False
+49    69 -1.550204  0.085566          0.666961        False
+50    70 -1.457261  0.070629          0.642581        False
+51    71 -1.408945 -0.013013          0.639462        False
+52    72 -1.483288  0.117628          0.635806        False
+53    73 -1.173688  0.132254          0.704140        False
+54    74 -1.218779 -0.010837          0.732056         True
+55    75 -1.195362  0.021734          0.703616        False
+56    76 -1.175312 -0.069729          0.736362         True
+57    77 -1.334819  0.034371          0.873311         True
+58    78 -1.106569  0.176783          0.956065         True
+59    79 -0.981253  0.119220          0.918852         True
+60    80 -0.868128  0.201486          0.861751         True
+61    81 -0.578280  0.175232          0.713205         True
+62    82 -0.517664  0.070661          0.661254        False
+63    83 -0.436959 -0.116997          1.000000         True
+64    84 -0.751658 -0.112095          0.516868        False
+65    85 -0.661150  0.032842          0.000000        False
+66    86 -0.685975  0.028577          0.000000        False
+67    87 -0.603997  0.076543          0.000000        False
+68    88 -0.532890  0.026461          0.000000        False
+69    89 -0.551074  0.012333          0.000000        False
+70    90 -0.508224  0.018380          0.000000        False
+71    91 -0.514314  0.393756          0.000000        False
+72    92  0.279287  0.299231          0.000000        False
+73    93  0.084148 -0.049150          0.000000        False
+74    94  0.180988 -0.124167          0.000000        False
+75    95 -0.164185 -0.342579          0.000000        False
+76    96 -0.504171 -0.044223          0.000000        False
+77    97 -0.252631  0.801757          0.000000        False
+78    98  1.099344 -0.954215          0.000000        False
+79    99 -2.161062 -3.260406          0.000000        False
+
+2026-11-10 16:10:24,553 - INFO - -------SECCION 3: Analogía del análisis de Hough (FIN)-------
+2026-11-10 16:10:24,572 - INFO - -------SECCION 4: Visualización de Keypoints y Descriptor por gradientes -------
+2026-11-10 16:10:24,574 - INFO - 🎯 Pico máximo de Hough detectado en los hombres a los 81 años (Intensidad:1.0000)
+2026-11-10 16:10:24,575 - INFO - 📏 Rango crítico centrado (±15 años): [66, 96] años
+2026-11-10 16:10:24,897 - INFO - 📊 Gráfica de keypoints guardada en: D:\Abraham\MyRepos\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Sesion_4\Output\Keypoints_Hough_Hombres_Descriptor_2021.png
+2026-11-10 16:10:25,006 - INFO - 🔗 Resultado del Matching Geométrico con Gradientes (Coseno):
+   - Similitud de Coseno Máxima: 0.5251
+   -🎯 Edad equivalente en Mujeres basada la similitud del coseno: 48 años
+   -📏 Rango crítico centrado (±15 años): [33, 63] años
+2026-11-10 16:10:25,007 - INFO - -------SECCION 4: Visualización y Descriptor por gradientes (FIN)-------
+2026-11-10 16:10:25,024 - INFO - -------SECCION 5: Gráfica Comparativa de Matching en Mujeres-------
+2026-11-10 16:10:25,026 - INFO - 🎯 Pico máximo de Hough detectado en las mujeres a los 83 años (Intensidad:1.0000)
+2026-11-10 16:10:25,352 - INFO - 📊 Gráfica comparativa de mujeres guardada en: D:\Abraham\MyRepos\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Sesion_4\Output\Keypoints_Hough_Mujeres_Matching_2021.png
+2026-11-10 16:10:25,457 - INFO - -------SECCION 5: Gráfica Comparativa de Matching en Mujeres (FIN)-------

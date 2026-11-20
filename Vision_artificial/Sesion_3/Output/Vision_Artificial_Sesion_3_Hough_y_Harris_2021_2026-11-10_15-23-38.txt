@@ -1,0 +1,54 @@
+2026-11-10 15:23:38,625 - INFO - ================================================================================
+2026-11-10 15:23:38,626 - INFO - 🚀 INICIANDO ETAPA DE CÁLCULO DE SCORE DE RIESGO METABÓLICO CONTINUO
+2026-11-10 15:23:38,627 - INFO - ================================================================================
+
+
+2026-11-10 15:23:38,653 - INFO - -------SECCION 1: Carga de Datasets y Tabla de Betas-------
+2026-11-10 15:23:38,656 - INFO - ⌛ Cargando Dataset de Superclases: 1_Concatenar_y_Estandarizar_HJM_Superclasses_2021.parquet
+2026-11-10 15:23:40,094 - INFO - ✅ Dataset cargado. Dimensiones: 87027 filas x 1184 columnas.
+2026-11-10 15:23:40,096 - INFO - ⌛ Cargando Tabla de Betas: 2_Regresion_logistica_DMT2_HJM_Betas_Comorbilidades_2021.parquet
+2026-11-10 15:23:40,103 - INFO - ✅ Tabla de Betas cargada (1177 coeficientes registrados).
+2026-11-10 15:23:40,839 - INFO - ✅ Variable 'Edad' re-estandarizada correctamente con StandardScaler.
+2026-11-10 15:23:40,843 - INFO - 📌 Intercepto base (Beta_0): 6.3613
+2026-11-10 15:23:41,247 - INFO - ✅ Puntuación ponderada calculada considerando 1177 variables/comorbilidades.
+2026-11-10 15:23:41,251 - INFO - 📊 Estadísticas de la Señal Continua de Riesgo Metabólico (Z):
+2026-11-10 15:23:41,253 - INFO -    Mínimo: -10.4302 | Máximo: 7.1464 | Media: -2.1583 | Std: 1.9931
+2026-11-10 15:23:42,008 - INFO - 💾 Dataset guardado exitosamente en: D:\Abraham\MyRepos\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Sesion_3\Output\3_Dataset_Con_Score_Deterioro_Metabolico_2021.parquet
+2026-11-10 15:23:42,009 - INFO - -------SECCION 1: Carga de Datasets y Tabla de Betas (FIN)-------
+2026-11-10 15:23:42,010 - INFO - -------SECCION 2: Visualización de densidades por clase -------
+2026-11-10 15:23:42,121 - INFO - 📊: Dibujando el Score de deterioro metabólico (Z)
+2026-11-10 15:23:44,292 - INFO - ✅ Gráfica de distribución guardada en: D:\Abraham\MyRepos\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Sesion_3\Output\3_Construccion_señal_de_Riesgo_Metabolico_HJM_Distribucion_2021_Fig1.png
+2026-11-10 15:23:44,453 - INFO - ----SECCION 2: Visualización de densidades por clase (FIN)----
+
+
+2026-11-10 15:23:44,488 - INFO - -------SECCION 3: Obtención de la curva sigmoide -------
+2026-11-10 15:23:46,368 - INFO - ✅ Gráfica de trayectoria por edad guardada en: D:\Abraham\MyRepos\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Sesion_3\Output\3_Construccion_señal_de_Riesgo_Metabolico_HJM_Señal_Deterioro_2021.png
+2026-11-10 15:23:46,488 - INFO - --------SECCION 3: Obtención de la curva sigmoide (FIN) -------
+
+
+2026-11-10 15:23:46,507 - INFO - ---- SECCION 4: Analogía de Hough con Escala de Eventos ----
+
+2026-11-10 15:23:46,553 - INFO - ⚙️ Procesando análisis de Hough con ventana de tamaño: 5...
+2026-11-10 15:23:46,588 - INFO - ⚙️ Procesando análisis de Hough con ventana de tamaño: 10...
+2026-11-10 15:23:46,627 - INFO - ⚙️ Procesando análisis de Hough con ventana de tamaño: 15...
+2026-11-10 15:23:46,662 - INFO - ⚙️ Procesando análisis de Hough con ventana de tamaño: 20...
+2026-11-10 15:23:46,703 - INFO - ⚙️ Procesando análisis de Hough con ventana de tamaño: 25...
+2026-11-10 15:23:46,736 - INFO - ⚙️ Procesando análisis de Hough con ventana de tamaño: 30...
+2026-11-10 15:23:46,767 - INFO - ⚙️ Procesando análisis de Hough con ventana de tamaño: 35...
+2026-11-10 15:23:46,798 - INFO - ⚙️ Procesando análisis de Hough con ventana de tamaño: 40...
+2026-11-10 15:23:48,897 - INFO - 💾 Figura con escala de color individual guardada en: D:\Abraham\MyRepos\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Sesion_3\Output\Hough_Ventanas_Con_Escala_2021.png
+2026-11-10 15:23:50,059 - INFO - ---- SECCION 4: Analogía de Hough con Escala de Eventos (FIN)----
+
+2026-11-10 15:23:50,093 - INFO - ---- SECCION 5: Analogía de Harris con Escala de Eventos ----
+
+2026-11-10 15:23:50,136 - INFO - ⚙️ Procesando análisis de Harris con ventana de tamaño: 5...
+2026-11-10 15:23:50,183 - INFO - ⚙️ Procesando análisis de Harris con ventana de tamaño: 10...
+2026-11-10 15:23:50,216 - INFO - ⚙️ Procesando análisis de Harris con ventana de tamaño: 15...
+2026-11-10 15:23:50,248 - INFO - ⚙️ Procesando análisis de Harris con ventana de tamaño: 20...
+2026-11-10 15:23:50,280 - INFO - ⚙️ Procesando análisis de Harris con ventana de tamaño: 25...
+2026-11-10 15:23:50,316 - INFO - ⚙️ Procesando análisis de Harris con ventana de tamaño: 30...
+2026-11-10 15:23:50,348 - INFO - ⚙️ Procesando análisis de Harris con ventana de tamaño: 35...
+2026-11-10 15:23:50,379 - INFO - ⚙️ Procesando análisis de Harris con ventana de tamaño: 40...
+2026-11-10 15:23:52,594 - INFO - 💾 Figura combinada de Harris guardada en: D:\Abraham\MyRepos\Maestria\05_Semestres\3er_Semestre\Vision_artificial\Sesion_3\Output\Harris_Todas_Las_Ventanas_Combinadas_2021.png
+2026-11-10 15:23:53,951 - INFO - ---- SECCION 5: Analogía de Harris con Escala de Eventos (fin) ----
+
